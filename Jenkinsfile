@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        CONTROL_NODE = '54.234.3.247' 
-        SSH_KEY = credentials('ansible-key') 
+        CONTROL_NODE = '54.234.3.247'
+        SSH_KEY = credentials('ansible-key')
     }
 
     stages {
@@ -11,7 +11,6 @@ pipeline {
             steps {
                 sh '''
                 ssh -o StrictHostKeyChecking=no -i $SSH_KEY ubuntu@$CONTROL_NODE 'sudo apt update && sudo apt install -y ansible python3 python3-pip'
-                ssh -i $SSH_KEY ubuntu@$CONTROL_NODE 'pip3 install boto3'
                 '''
             }
         }
