@@ -2,13 +2,13 @@
 - Deployment of a Node.js application to AWS EC2 instances using Jenkins, Ansible, and Docker.
 
 **Project Components**
--**✅Jenkins Server (DockerMaster)**  
+- **✅Jenkins Server (DockerMaster)**  
 - Runs in a Docker container on a dedicated EC2 instance  
 - Executes CI/CD pipeline  
--**✅Ansible Control Node**  
+- **✅Ansible Control Node**  
 - Configures and manages EC2 Worker Nodes  
 - Runs Ansible playbooks  
--**✅Two EC2 Worker Nodes**  
+- **✅Two EC2 Worker Nodes**  
 - Host the deployed Dockerized Node.js application
 
 
