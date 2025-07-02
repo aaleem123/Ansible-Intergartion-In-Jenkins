@@ -7,6 +7,15 @@ pipeline {
     }
 
     stages {
+        
+        stage('Prepare App Archive') {
+            steps {
+                sh '''
+                tar -czvf app.tar.gz app/
+                '''
+            }
+        }
+        
         stage('Prepare Control Node') {
             steps {
                 sh '''
