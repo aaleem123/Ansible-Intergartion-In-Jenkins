@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        CONTROL_NODE = '52.23.187.140' // Your Ansible Control Node IP
-        SSH_KEY = credentials('ansible-key') // Jenkins SSH Private Key Credential ID
+        CONTROL_NODE = '52.23.187.140' 
+        SSH_KEY = credentials('ansible-key') 
     }
 
     stages {
