@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        CONTROL_NODE = '52.23.187.140' 
+        CONTROL_NODE = '54.234.3.247' 
         SSH_KEY = credentials('ansible-key') 
     }
 
