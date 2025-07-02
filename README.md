@@ -3,13 +3,13 @@
 
 **Project Components**
 - **Jenkins Server (DockerMaster)**  
-- Runs in a Docker container on a dedicated EC2 instance  
-- Executes CI/CD pipeline  
+  - Runs in a Docker container on a dedicated EC2 instance  
+  - Executes CI/CD pipeline  
 - **Ansible Control Node**  
-- Configures and manages EC2 Worker Nodes  
-- Runs Ansible playbooks  
+  - Configures and manages EC2 Worker Nodes  
+  - Runs Ansible playbooks  
 - **Two EC2 Worker Nodes**  
-- Host the deployed Dockerized Node.js application
+  - Host the deployed Dockerized Node.js application
 
 
 ## 🔧 **Pipeline Workflow**
