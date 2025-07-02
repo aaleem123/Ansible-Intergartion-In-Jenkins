@@ -1,71 +1,35 @@
-- name: Install system packages, Node.js, and create user
-  hosts: all
-  become: yes
-  tasks:
+- name: Configure Managed Nodes
+  hosts: worker
+  become: true
 
-    - name: Update apt cache and install ACL support
+  tasks:
+    - name: Update package cache
       apt:
-        name:
-          - acl
-        state: present
         update_cache: yes
 
-    - name: Install Node.js and npm
+    - name: Install Docker
       apt:
-        name:
-          - nodejs
-          - npm
+        name: docker.io
+        state: present
 
-    - name: Create user attia with sudo privileges
-      user:
-        name: attia
-        groups: sudo
-        create_home: yes
+    - name: Install Docker Compose
+      apt:
+        name: docker-compose
+        state: present
 
-    - name: Ensure /home/attia is world-accessible
-      file:
-        path: /home/attia
-        state: directory
-        owner: attia
-        group: attia
-        mode: '0755'
-
-    - name: Ensure .npm cache folder for attia exists
-      file:
-        path: /home/attia/.npm
-        state: directory
-        owner: attia
-        group: attia
-        mode: '0755'
-
-    - name: Recursively fix ownership of .npm folder for attia
-      file:
-        path: /home/attia/.npm
-        state: directory
-        owner: attia
-        group: attia
-        recurse: yes
-
-    - name: Copy application archive to home directory
+    - name: Copy application archive
       copy:
         src: app.tar.gz
-        dest: /home/attia/app.tar.gz
+        dest: /home/ubuntu/app.tar.gz
 
-    - name: Extract application archive
+    - name: Extract application
       unarchive:
-        src: /home/attia/app.tar.gz
-        dest: /home/attia
+        src: /home/ubuntu/app.tar.gz
+        dest: /home/ubuntu/
         remote_src: yes
 
-    - name: Install Node.js dependencies (run as root for dev)
-      shell: npm install
-      args:
-        chdir: /home/attia/app
-
-    - name: Start Node.js application as root (dev only)
+    - name: Deploy application using Docker Compose
       shell: |
-        cd /home/attia/app
-        nohup node server.js &
-      args:
-        executable: /bin/bash
+        cd /home/ubuntu/app
+        docker-compose up -d
 

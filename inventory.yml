@@ -1,3 +1,4 @@
 [worker]
-ec2-3-87-188-228.compute-1.amazonaws.com ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/id_ed25519
+worker1 ansible_host=44.203.72.82 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/id_ed25519
+worker2 ansible_host=13.220.144.133 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/id_ed25519
 
